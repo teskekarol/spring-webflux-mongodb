@@ -1,6 +1,7 @@
 package pl.teskekarol.springwebfluxmongodb.Domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
@@ -11,27 +12,30 @@ import java.time.LocalDate;
 @Document(collection = "footballers")
 public class Footballer {
     @Id
-    private int id;
+    private String id;
 
-    @NotBlank
     @Size(max = 150)
     private String name;
 
-    @NotBlank
     private int yearOfBirth;
-
-    @NotNull
-    private LocalDate createdAt = LocalDate.now();
 
     public Footballer() {
 
     }
 
-    public Footballer(@NotBlank @Size(max = 150) String name, @NotBlank int yearOfBirth) {
+    @PersistenceConstructor
+    public Footballer(@Size(max = 150) String name, int yearOfBirth) {
         this.id = id;
         this.name = name;
         this.yearOfBirth = yearOfBirth;
+    }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -50,11 +54,4 @@ public class Footballer {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
 }

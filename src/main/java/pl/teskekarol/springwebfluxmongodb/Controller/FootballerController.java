@@ -17,16 +17,15 @@ public class FootballerController {
 
     @GetMapping("/footballers")
     public Flux<Footballer> getAllFootballers(){
-        System.out.println("Hit");
-        footballerRepository.save(new Footballer("Karol Teske", 1996));
-        footballerRepository.save(new Footballer("Paulina Siwko", 1997));
-        System.out.println("saved");
-        System.out.println("out");
+        System.out.println(footballerRepository.count());
+
         return footballerRepository.findAll();
+
     }
 
     @PostMapping("/footballers")
     public Mono<Footballer> createFootballer(@Valid  @RequestBody Footballer footballer){
+        footballerRepository.save(new Footballer("KT", 1990));
         return footballerRepository.save(footballer);
     }
 

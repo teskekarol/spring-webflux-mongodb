@@ -10,5 +10,4 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringWebfluxMongodbApplicationTests {
-
 }
